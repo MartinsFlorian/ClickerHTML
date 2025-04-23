@@ -7,6 +7,18 @@
 	</head>
 	<body>
 		<h1>Clicker</h1>
-		<button onclick="myTest()">Click Me</button>
+		<p>Score: <span id="viewScore">0
+		</span></p>
+		<p>Money: <span id="viewMoney">0
+		</span></p>
+		<hr>
+		<button class="buuton" onclick="increaseScore(1)">Click Me
+		</button>
+		<button onclick="convertScore()">Convert Score (2 Score = 1 Money)
+		</button>
+		<div class="tooltip">
+		<button onclick="acheterAutoFarm()" id="bouton-auto-farm">Acheter Auto-Farm
+		</button>
+		<span class="tooltiptext"> Price: 10 Money</span>
 	</body>
 </html>
