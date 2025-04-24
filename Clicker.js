@@ -38,7 +38,7 @@ function upgradeClick(){
 		money-=clickUpgradePrice;
 		click+=clickAdd;
 		clickUpgardeLevel++;
-		clickUpgradePrice = Math.floor(clickUpgradePrice * 1.5);
+		clickUpgradePrice = Math.floor(clickUpgradePrice * 1.3);
 		
 		updateDisplay();
 		updateTooltips();
@@ -50,7 +50,7 @@ function buyAutoClicker() {
   if (money >= autoClickerPrice) {
     money -= autoClickerPrice;
     autoClickers++;
-    autoClickerPrice = Math.floor(autoClickerPrice * 1.1);
+    autoClickerPrice = Math.floor(autoClickerPrice * 1.25);
 
     updateDisplay();
     updateTooltips();
@@ -69,7 +69,7 @@ function upgradeAutoClick(){
     money -= autoClickersUpgradePrice;
 	autoClickersMultiplier++;
 	autoClickersUpgardeLevel++;
-    autoClickersUpgradePrice = Math.floor(autoClickersUpgradePrice * 1.1);
+    autoClickersUpgradePrice = Math.floor(autoClickersUpgradePrice * 1.3);
 
     updateDisplay();
     updateTooltips();
@@ -80,7 +80,7 @@ function upgradeAutoClick(){
 function buyNeko() {
   if (money >= buyNekoPrice) {
     money -= buyNekoPrice;
-    buyNekoPrice = Math.floor(buyNekoPrice * 1.1);
+    buyNekoPrice = Math.floor(buyNekoPrice * 1.2);
 
     updateDisplay();
     updateTooltips();
