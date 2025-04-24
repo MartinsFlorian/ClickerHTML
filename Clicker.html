@@ -7,18 +7,31 @@
 	</head>
 	<body>
 		<h1>Clicker</h1>
-		<p>Score: <span id="viewScore">0
-		</span></p>
-		<p>Money: <span id="viewMoney">0
-		</span></p>
+		
+		<p>Score: <span id="viewScore">0</span></p>
+		<p>Money: <span id="viewMoney">0</span></p>
+		<p>Auto-clickers: <span id="viewAuto">0</span></p>
 		<hr>
-		<button class="buuton" onclick="increaseScore(1)">Click Me
+		
+		<button class="button" onclick="increaseScore()">Click Me
 		</button>
-		<button onclick="convertScore()">Convert Score (2 Score = 1 Money)
-		</button>
+		
 		<div class="tooltip">
-		<button onclick="acheterAutoFarm()" id="bouton-auto-farm">Acheter Auto-Farm
-		</button>
-		<span class="tooltiptext"> Price: 10 Money</span>
+		  <button onclick="convertScore()">Convert Score</button>
+		  <span class="tooltiptext">Price: <span id="convertScorePriceText">2</span> score</span>
+		</div>
+		
+		<div class="tooltip">
+			<button onclick="buyNeko()">Buy Neko</button>
+			<span class="tooltiptext">Price:<span id="buyNekoPriceText">10</span> Money</span>
+		</div>
+		
+		<div class="tooltip">
+			<button onclick="buyAutoClicker()">Buy Auto-clicker</button>
+			<span class="tooltiptext">Price: <span id="autoClickerPriceText">50</span> money</span>
+		</div>
+		
+		<h2> Unlocked Nekos</h2>	
+		<div id="image-container"></div>
 	</body>
 </html>
