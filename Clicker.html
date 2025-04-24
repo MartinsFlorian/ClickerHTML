@@ -5,33 +5,43 @@
 		<link rel="stylesheet" href="Clicker.css">
 		<script src="Clicker.js"></script>
 	</head>
-	<body>
+	<body onload="loadStart()">
 		<h1>Clicker</h1>
 		
-		<p>Score: <span id="viewScore">0</span></p>
 		<p>Money: <span id="viewMoney">0</span></p>
+		<p>Click: <span id="viewClick">0</span></p>
 		<p>Auto-clickers: <span id="viewAuto">0</span></p>
+		<p>Auto-clickers Multiplier: <span id="viewAutoClickMultiplier">0</span></p>
 		<hr>
 		
-		<button class="button" onclick="increaseScore()">Click Me
-		</button>
+		<button class="button" onclick="increaseMoney()">Click Me</button>
 		
 		<div class="tooltip">
-		  <button onclick="convertScore()">Convert Score</button>
-		  <span class="tooltiptext">Price: <span id="convertScorePriceText">2</span> score</span>
+			<button onclick="buyAutoClicker()">Buy Auto-clicker</button>
+			<span class="tooltiptext">Price: <span id="autoClickerPriceText">50</span> Money</span>
 		</div>
+		
+		<h2>Upgrade</h2>
+		
+		<div class="tooltip">
+			<p>Upgrade: <span id="viewClickUpgrade">0</span></p>
+			<button onclick="upgradeClick()">Upgarde Click</button>
+			<span class="tooltiptext">Price: <span id="clickPriceText">2</span> Money
+			<br>Click: + <span id="clickAddText">0</span></span>
+		</div>
+		
+		<div class="tooltip">
+			<p>Upgarde: <span id="viewAutoClickUpgrade">0</span></p>
+			<button onclick="upgradeAutoClick()">Upgarde Auto Clickers</button>
+			<span class="tooltiptext">Price: <span id="autoClickerUpgradePriceText">2</span> Money</span>
+		</div>
+		
+		<h3> Unlocked Nekos</h3>	
 		
 		<div class="tooltip">
 			<button onclick="buyNeko()">Buy Neko</button>
 			<span class="tooltiptext">Price:<span id="buyNekoPriceText">10</span> Money</span>
 		</div>
-		
-		<div class="tooltip">
-			<button onclick="buyAutoClicker()">Buy Auto-clicker</button>
-			<span class="tooltiptext">Price: <span id="autoClickerPriceText">50</span> money</span>
-		</div>
-		
-		<h2> Unlocked Nekos</h2>	
 		<div id="image-container"></div>
 	</body>
 </html>

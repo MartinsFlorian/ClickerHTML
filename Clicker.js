@@ -1,57 +1,86 @@
-let score=0;
-let money=0;
+let money=100000;
+let click=1;
+let clickAdd=1;
+let clickUpgradePrice=100;
+let clickUpgardeLevel=0;
 let autoClickers = 0;
-let autoClickerPrice = 50;
-let convertScorePrice = 2;
+let autoClickersMultiplier =1;
+let autoClickerPrice = 10;
+let autoClickersUpgradePrice=250;
+let autoClickersUpgardeLevel=0;
 let buyNekoPrice =10;
 
+function loadStart(){
+	updateDisplay();
+	updateTooltips();
+}
 function updateDisplay(){
-	document.getElementById("viewScore").innerText = score;
 	document.getElementById("viewMoney").innerText = money;
 	document.getElementById("viewAuto").innerText = autoClickers;
+	document.getElementById("viewClick").innerText = click;
+	document.getElementById("viewClickUpgrade").innerText = clickUpgardeLevel;
+	document.getElementById("viewAutoClickUpgrade").innerText = autoClickersUpgardeLevel;
+	document.getElementById("viewAutoClickMultiplier").innerText = autoClickersMultiplier;
 }
 function updateTooltips() {
 	document.getElementById('autoClickerPriceText').textContent = autoClickerPrice;
-	document.getElementById('convertScorePriceText').textContent = convertScorePrice;
 	document.getElementById('buyNekoPriceText').textContent = buyNekoPrice;
+	document.getElementById('clickPriceText').textContent = clickUpgradePrice;
+	document.getElementById('clickAddText').textContent = clickAdd;
+	document.getElementById('autoClickerUpgradePriceText').textContent = autoClickersUpgradePrice;
 }
-function increaseScore(){
-	score++;
+function increaseMoney(){
+	money+=click;
 	updateDisplay();
 }
-function convertScore() {
-  if (score >= convertScorePrice) {
-	score -= convertScorePrice;
-    money += 1;
-
-    updateDisplay();
-    updateTooltips();
-  } else {
-    alert("Not enough score to convert!");
-  }
+function upgradeClick(){
+	if(money >= clickUpgradePrice){
+		money-=clickUpgradePrice;
+		click+=clickAdd;
+		clickUpgardeLevel++;
+		clickUpgradePrice = Math.floor(clickUpgradePrice * 1.5);
+		
+		updateDisplay();
+		updateTooltips();
+	}else{
+		alert("Not enough money for upgrade Click!");
+	}
 }
 function buyAutoClicker() {
   if (money >= autoClickerPrice) {
     money -= autoClickerPrice;
     autoClickers++;
-    autoClickerPrice = Math.floor(autoClickerPrice * 1.5);
+    autoClickerPrice = Math.floor(autoClickerPrice * 1.1);
 
     updateDisplay();
     updateTooltips();
   } else {
-    alert("Not enough money for an auto-clicker!");
+    alert("Not enough money for buy an auto-clicker!");
   }
 }
 setInterval(() => {
   if (autoClickers > 0) {
-    score += autoClickers;
+    money += autoClickers * autoClickersMultiplier;
     updateDisplay();
   }
 }, 1000);
+function upgradeAutoClick(){
+	if (money >= autoClickersUpgradePrice) {
+    money -= autoClickersUpgradePrice;
+	autoClickersMultiplier++;
+	autoClickersUpgardeLevel++;
+    autoClickersUpgradePrice = Math.floor(autoClickersUpgradePrice * 1.1);
+
+    updateDisplay();
+    updateTooltips();
+  } else {
+    alert("Not enough money for upgrade Auto-Clickers!");
+  }
+}
 function buyNeko() {
   if (money >= buyNekoPrice) {
     money -= buyNekoPrice;
-    buyNekoPrice = Math.floor(buyNekoPrice * 1.5);
+    buyNekoPrice = Math.floor(buyNekoPrice * 1.1);
 
     updateDisplay();
     updateTooltips();
@@ -61,9 +90,12 @@ function buyNeko() {
   }
 }
 function getRandomRarity() {
-  const rarities = ['common', 'rare', 'epic', 'legendary'];
-  const randomIndex = Math.floor(Math.random() * rarities.length);
-  return rarities[randomIndex];
+    const roll = Math.random(); // 0.0 - 1.0
+
+	 if (roll < 0.7292) return 'Common';
+	 if (roll < 0.7292 + 0.2083) return 'Rare';
+	 if (roll < 0.7292 + 0.2083 + 0.0521) return 'Epic';
+	 return 'Legendary'; 
 }
 function fetchNeko() {
   const apiUrl = 'https://nekos.best/api/v2/neko';
@@ -72,7 +104,8 @@ function fetchNeko() {
     .then(res => res.json())
     .then(data => {
       const url = data.results[0].url;
-      const rarity = getRandomRarity();
+      let rarity = getRandomRarity();
+	  console.log(rarity);
       provideGiftBasedOnRarity(rarity);
 
       const container = document.getElementById('image-container');
@@ -98,23 +131,30 @@ function fetchNeko() {
 function provideGiftBasedOnRarity(rarity) {
   let giftMessage = '';
   switch (rarity) {
-    case 'common':
-      score += 1;
-      giftMessage = 'You received 1 score!';
-      break;
-    case 'rare':
-      score += 5;
-      giftMessage = 'You received 5 score!';
-      break;
-    case 'epic':
-      score += 10;
+    case 'Common':
       money += 5;
-      giftMessage = 'You received 10 score and 5 money!';
+	  click+=3;
+      giftMessage = 'You received 5 Money and 3 Click!';
       break;
-    case 'legendary':
-      score += 50;
-      money += 10;
-      giftMessage = 'You received 50 score and 10 money!';
+    case 'Rare':
+      money += 50;
+	  click+=5;
+	  autoClickers+=3;
+      giftMessage = 'You received 50 Money, 5 Click and 3 Auto-Clickers!';
+      break;
+    case 'Epic':
+      money += 250;
+	  autoClickersMultiplier+=1;
+	  click+=10;
+	  autoClickers+=5;
+      giftMessage = 'You received 250 Money, 10 Click, 5 Auto-Clickers and 1 Auto-Clickers Multiplier!';
+      break;
+    case 'Legendary':
+      money += 1000;
+	  autoClickersMultiplier+=5;
+	  click+=25;
+	  autoClickers+=10;
+      giftMessage = 'You received 1000 Money, 25 Click, 10 Auto-Clickers and 5 Auto-Clickers Multiplier!';
       break;
     default:
       giftMessage = 'No gift for this rarity.';
