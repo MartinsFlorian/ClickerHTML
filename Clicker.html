@@ -1,47 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="eng">
 	<head>
-		<title>Clicker Game</title>
+		<title>Neko's Purr-chase Game</title>
 		<link rel="stylesheet" href="Clicker.css">
 		<script src="Clicker.js"></script>
+		<link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
 	</head>
 	<body onload="loadStart()">
-		<h1>Clicker</h1>
-		
-		<p>Money: <span id="viewMoney">0</span></p>
-		<p>Click: <span id="viewClick">0</span></p>
-		<p>Auto-clickers: <span id="viewAuto">0</span></p>
-		<p>Auto-clickers Multiplier: <span id="viewAutoClickMultiplier">0</span></p>
-		<hr>
-		
-		<button class="button" onclick="increaseMoney()">Click Me</button>
-		
-		<div class="tooltip">
-			<button onclick="buyAutoClicker()">Buy Auto-clicker</button>
-			<span class="tooltiptext">Price: <span id="autoClickerPriceText">50</span> Money</span>
-		</div>
-		
-		<h2>Upgrade</h2>
-		
-		<div class="tooltip">
-			<p>Upgrade: <span id="viewClickUpgrade">0</span></p>
-			<button onclick="upgradeClick()">Upgarde Click</button>
-			<span class="tooltiptext">Price: <span id="clickPriceText">2</span> Money
-			<br>Click: + <span id="clickAddText">0</span></span>
-		</div>
-		
-		<div class="tooltip">
-			<p>Upgarde: <span id="viewAutoClickUpgrade">0</span></p>
-			<button onclick="upgradeAutoClick()">Upgarde Auto Clickers</button>
-			<span class="tooltiptext">Price: <span id="autoClickerUpgradePriceText">2</span> Money</span>
-		</div>
-		
-		<h3> Unlocked Nekos</h3>	
-		
-		<div class="tooltip">
-			<button onclick="buyNeko()">Buy Neko</button>
-			<span class="tooltiptext">Price:<span id="buyNekoPriceText">10</span> Money</span>
-		</div>
-		<div id="image-container"></div>
+		<div id="background-pattern"></div>
+		<header>
+			<h1>Neko's Purr-chase</h1>
+		</header>
+
+		<main>
+			<div id="stats">
+				<p>Money: <span id="viewMoney">0</span></p>
+				<p>NekoCoins: <span id="viewNekoCoins">1</span></p>
+				<p>Click: <span id="viewClick">0</span></p>
+				<p>Auto-clickers: <span id="viewAuto">0</span></p>
+				<p>Auto-clickers Multiplier: <span id="viewAutoClickMultiplier">0</span></p>
+			</div>
+			<div id="buttons">
+				<h2>Neko's Farm</h2>
+				<div class="tooltip">
+				  <button onclick="increaseMoney()">Click Me! 🐾</button>
+				</div>
+			<div class="tooltip">
+				<button onclick="buyAutoClicker()">Buy Auto-clicker</button>
+				<span class="tooltiptext">Price: <span id="autoClickerPriceText">50</span> Money</span>
+			</div>
+	
+			<div class="tooltip">
+				<button onclick="convertMoneyToNekoCoins()">Convert Money</button>
+				<span class="tooltiptext">Price: <span id="convertValuePriceText">2</span> Money
+				<br>Gain: <span id="convertValueExchangeText">0</span> NekoCoins</span>
+			</div>
+
+			<div class="tooltip">
+				<button onclick="buyNeko()">Buy Neko</button>
+				<span class="tooltiptext">Price:<span id="buyNekoPriceText">10</span> NekoCoins</span>
+			</div>
+			<h2>Upgrades</h2>
+			
+			<div class="tooltip">
+				<p>Upgrade: <span id="viewClickUpgrade">0</span></p>
+				<button onclick="upgradeClick()">Upgarde Click</button>
+				<span class="tooltiptext">Price: <span id="clickPriceText">2</span> Money
+				<br>Click: + <span id="clickAddText">0</span></span>
+			</div>
+			
+			<div class="tooltip">
+				<p>Upgarde: <span id="viewAutoClickUpgrade">0</span></p>
+				<button onclick="upgradeAutoClick()">Upgarde Auto Clickers</button>
+				<span class="tooltiptext">Price: <span id="autoClickerUpgradePriceText">2</span> Money</span>
+			</div>
+	
+			<div class="tooltip">
+				<p>Upgrade: <span id="viewConvertUpgrade">0</span></p>
+				<button onclick="upgradeConverter()">Upgarde Converter</button>
+				<span class="tooltiptext">Price: <span id="convertUpgradePriceText">2</span> Money
+				<br>NekoCoins: + <span id="convertExchangeAddText">0</span></span>
+			</div>
+			</div>
+			
+			<div id="image-container"><h2> Unlocked Nekos</h2></div>
+		</main>
+		<footer>
+			<p>Made with love by Fishuy 🐾</p>
+		</footer>
 	</body>
 </html>

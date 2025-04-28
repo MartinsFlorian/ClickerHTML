@@ -1,14 +1,25 @@
+
 let money=100000;
+let nekoCoins=1000000000000;
+let autoClickers = 0;
 let click=1;
+
 let clickAdd=1;
 let clickUpgradePrice=100;
 let clickUpgardeLevel=0;
-let autoClickers = 0;
+
 let autoClickersMultiplier =1;
 let autoClickerPrice = 10;
 let autoClickersUpgradePrice=250;
 let autoClickersUpgardeLevel=0;
+
 let buyNekoPrice =10;
+
+let convertValuePrice=250;
+let convertValueExchange=1;
+let convertUpgradePrice=500;
+let convertExchangeAdd=1;
+let convertUpgradeLevel=0;
 
 function loadStart(){
 	updateDisplay();
@@ -16,11 +27,13 @@ function loadStart(){
 }
 function updateDisplay(){
 	document.getElementById("viewMoney").innerText = money;
+  document.getElementById("viewNekoCoins").innerText = nekoCoins;
 	document.getElementById("viewAuto").innerText = autoClickers;
 	document.getElementById("viewClick").innerText = click;
 	document.getElementById("viewClickUpgrade").innerText = clickUpgardeLevel;
 	document.getElementById("viewAutoClickUpgrade").innerText = autoClickersUpgardeLevel;
 	document.getElementById("viewAutoClickMultiplier").innerText = autoClickersMultiplier;
+  document.getElementById("viewConvertUpgrade").innerText = convertUpgradeLevel;
 }
 function updateTooltips() {
 	document.getElementById('autoClickerPriceText').textContent = autoClickerPrice;
@@ -28,10 +41,15 @@ function updateTooltips() {
 	document.getElementById('clickPriceText').textContent = clickUpgradePrice;
 	document.getElementById('clickAddText').textContent = clickAdd;
 	document.getElementById('autoClickerUpgradePriceText').textContent = autoClickersUpgradePrice;
+  document.getElementById('convertValuePriceText').textContent = convertValuePrice;
+  document.getElementById('convertValueExchangeText').textContent = convertValueExchange;
+  document.getElementById('convertUpgradePriceText').textContent = convertUpgradePrice;
+  document.getElementById('convertExchangeAddText').textContent = convertExchangeAdd;
 }
 function increaseMoney(){
 	money+=click;
 	updateDisplay();
+  spawnPawPrint();
 }
 function upgradeClick(){
 	if(money >= clickUpgradePrice){
@@ -45,6 +63,30 @@ function upgradeClick(){
 	}else{
 		alert("Not enough money for upgrade Click!");
 	}
+}
+function convertMoneyToNekoCoins(){
+  if (money >= convertValuePrice){
+    money-=convertValuePrice;
+    nekoCoins+=convertValueExchange;
+
+    updateDisplay();
+    updateTooltips();
+  }else{
+    alert("Not enough money to convert into neko coins!");
+  }
+}
+function upgradeConverter(){
+  if(money >= convertUpgradePrice){
+    money-= convertUpgradePrice;
+    convertValueExchange+=convertExchangeAdd;
+    convertUpgradeLevel++;
+    convertUpgradePrice = Math.floor(convertUpgradePrice * 2);
+
+    updateDisplay();
+    updateTooltips();
+  }else{
+    alert("Not enough money to upgrade the converter!");
+  }
 }
 function buyAutoClicker() {
   if (money >= autoClickerPrice) {
@@ -78,15 +120,15 @@ function upgradeAutoClick(){
   }
 }
 function buyNeko() {
-  if (money >= buyNekoPrice) {
-    money -= buyNekoPrice;
+  if (nekoCoins >= buyNekoPrice) {
+    nekoCoins -= buyNekoPrice;
     buyNekoPrice = Math.floor(buyNekoPrice * 1.2);
 
     updateDisplay();
     updateTooltips();
 	fetchNeko();
   } else {
-    alert("Not enough money to buy Neko!");
+    alert("Not enough NekoCoins to buy Neko!");
   }
 }
 function getRandomRarity() {
@@ -161,4 +203,13 @@ function provideGiftBasedOnRarity(rarity) {
   }
   alert(giftMessage);
   updateDisplay()
+}
+function spawnPawPrint() {
+  const paw = document.createElement('div');
+  paw.className = 'paw-print';
+  paw.style.left = (Math.random() * window.innerWidth) + 'px';
+  paw.style.top = (Math.random() * window.innerHeight) + 'px';
+  document.body.appendChild(paw);
+
+  setTimeout(() => paw.remove(), 1000);
 }
