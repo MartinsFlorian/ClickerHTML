@@ -2,6 +2,8 @@
 <html lang="eng">
 	<head>
 		<title>Neko's Purr-chase Game</title>
+		<link rel="icon" type="image/x-icon" href="Image/NekoIcon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="Clicker.css">
 		<script src="Clicker.js"></script>
 		<link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
@@ -9,38 +11,40 @@
 	<body onload="loadStart()">
 		<div id="background-pattern"></div>
 		<header>
-			<h1>Neko's Purr-chase</h1>
+			<img src="Image/NekoImage.jpg" alt="Neko's Purr-chase Image" class="game-image">
 			<div id="save-buttons">
-				<button onclick="clearSave()">Clear Save</button>
-				<button onclick="exportSave()">Export Save</button>
-				<button onclick="importSave()">Import Save</button>
+				<button class="saveButton" onclick="saveGame()">Local Save</button>
+				<button class="saveButton" onclick="clearSave()">Clear Local Save</button>
+				<button class="saveButton" onclick="exportSave()">Export Save</button>
+				<button class="saveButton" onclick="importSave()">Import Save</button>
 				<input type="file" id="fileInput" style="display: none" onchange="handleFile(event)">
 			</div>
 		</header>
 		<main>
 			<div id="stats">
-				<p>Money: <span id="viewMoney">0</span></p>
-				<p>NekoCoins: <span id="viewNekoCoins">0</span></p>
-				<p>Click: <span id="viewClick">0</span></p>
-				<p>Auto-Clicker: <span id="viewAutoClicker">0</span></p>
-				<p>Auto-Clicker Multiplier: <span id="viewAutoClickerMultiplier">0</span></p>
+				<p style="font-size:2vw;">Money: <span id="viewMoney">0</span></p>
+				<p style="font-size:2vw;">NekoCoins: <span id="viewNekoCoins">0</span></p>
+				<p style="font-size:2vw;">Paw: <span id="viewClick">0</span></p>
+				<p style="font-size:2vw;">Auto-Meow: <span id="viewAutoClicker">0</span></p>
+				<p style="font-size:2vw;">Auto-Meow Multiplier: <span id="viewAutoClickerMultiplier">0</span></p>
 			</div>
 
 			<div id="buttons">
-				<h2>Neko's Farm</h2>
+				<h2 style="font-size:2vw;">Neko's Farm</h2>
 				<div class="tooltip">
 					<button onclick="increaseMoney()">Paw Me! 🐾</button>
+					<span class="tooltiptext">Gain: <span id="clickText"></span> Money</span>
 				</div>
 
 				<div class="tooltip">
 					<button onclick="buyAutoClicker()">Buy Auto-Meow</button>
-					<span class="tooltiptext">Price: <span id="autoClickerPriceText">50</span> Money</span>
+					<span class="tooltiptext">Price: <span id="autoClickerPriceText">0</span> Money</span>
 				</div>
 
 				<div class="tooltip">
 					<button onclick="convertMoneyToNekoCoins()">Convert Money</button>
 					<span class="tooltiptext">Price: <span id="converterValuePriceText">2</span> Money
-					<br>Gain:<span id="converterValueExchangeText">0</span> NekoCoins</span>
+					<br>Gain: <span id="converterValueExchangeText">0</span> NekoCoins</span>
 				</div>
 
 				<div class="tooltip">
@@ -48,34 +52,34 @@
 					<span class="tooltiptext">Price: <span id="buyNekoPriceText">50</span> NekoCoins</span>
 				</div>
 
-				<h2>Neko's Upgrades</h2>
+				<h2 style="font-size:2vw;">Neko's Upgrades</h2>
 
 				<div class="tooltip">
-					<p>Upgrade: <span id="viewClickUpgrade">0</span></p>
+					<p style="font-size:1vw;">Upgrade: <span id="viewClickUpgrade">0</span></p>
 					<button onclick="upgradeClick()">Upgrade Paw</button>
 					<span class="tooltiptext">Price: <span id="clickUpgradePriceText">2</span> Money
-					<br>Click: +<span id="clickAddText">2</span></span>
+					<br>Paw: +<span id="clickAddText">2</span></span>
 				</div>
 
 				<div class="tooltip">
-					<p>Upgrade: <span id="viewAutoClickerUpgrade">0</span></p>
+					<p style="font-size:1vw;">Upgrade: <span id="viewAutoClickerUpgrade">0</span></p>
 					<button onclick="upgradeAutoClicker()">Upgrade Auto-Meow</button>
 					<span class="tooltiptext">Price: <span id="autoClickerUpgradePriceText">2</span> Money</span>
 				</div>
 
 				<div class="tooltip">
-					<p>Upgrade: <span id="viewConverterUpgrade">0</span></p>
+					<p style="font-size:1vw;">Upgrade: <span id="viewConverterUpgrade">0</span></p>
 					<button onclick="upgradeConverter()">Upgrade NekoCoins Converter</button>
 					<span class="tooltiptext">Price: <span id="converterUpgradePriceText">2</span> Money
 					<br>NekoCoins: +<span id="converterExchangeAddText">0</span></span>
 				</div>
 			</div>
 
-			<div id="image-container"><h2>Unlocked Neko</h2></div>
+			<div id="image-container"><h2 style="font-size:2vw;">Unlocked Neko</h2></div>
 		</main>
 		
 		<footer>
-			<p>Made by Fishuy 🐾</p>
+			<p style="font-size:0.75vw;">Made by Fishuy 🐾</p>
 		</footer>
 	</body>
 </html>

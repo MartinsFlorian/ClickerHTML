@@ -40,6 +40,7 @@ function updateTooltips(){
   document.getElementById("buyNekoPriceText").textContent = buyNekoPrice;
   document.getElementById("clickUpgradePriceText").textContent = clickUpgradePrice;
   document.getElementById("clickAddText").textContent = clickAdd;
+  document.getElementById("clickText").textContent = click;
   document.getElementById("autoClickerUpgradePriceText").textContent = autoClickerUpgradePrice;
   document.getElementById("converterValuePriceText").textContent = converterValuePrice;
   document.getElementById("converterValueExchangeText").textContent = converterValueExchange;
@@ -84,7 +85,7 @@ function upgradeClick(){
     updateDisplay();
     updateTooltips();
   }else{
-    alert("Not enough Money for upgrade Click!")
+    alert("Not enough Money for upgrade Paw!")
   }
 }
 function convertMoneyToNekoCoins(){
@@ -120,7 +121,7 @@ function buyAutoClicker(){
     updateDisplay();
     updateTooltips();
   }else{
-    alert("Not enough Money for buy Auto-Clicker!")
+    alert("Not enough Money for buy Auto-Meow!")
   }
 }
 setInterval(() => {
@@ -139,7 +140,7 @@ function upgradeAutoClicker(){
     updateDisplay();
     updateTooltips();
   }else{
-    alert("Not enough Money for upgrade Auto-Clicker")
+    alert("Not enough Money for upgrade Auto-Meow")
   }
 }
 function buyNeko(){
@@ -200,27 +201,27 @@ function provideGiftBasedOnRarity(rarity) {
     case 'common':
       money += 5;
 	    click+=3;
-      giftMessage = 'You received 5 Money and 3 Click!';
+      giftMessage = 'You received 5 Money and 3 Paws!';
       break;
     case 'rare':
       money += 50;
 	    click+=5;
 	    autoClicker+=3;
-      giftMessage = 'You received 50 Money, 5 Click and 3 Auto-Clickers!';
+      giftMessage = 'You received 50 Money, 5 Paws and 3 Auto-Meow!';
       break;
     case 'epic':
       money += 250;
 	    autoClickerMultiplier+=1;
 	    click+=10;
 	    autoClicker+=5;
-      giftMessage = 'You received 250 Money, 10 Click, 5 Auto-Clickers and 1 Auto-Clickers Multiplier!';
+      giftMessage = 'You received 250 Money, 10 Paws, 5 Auto-Meow and 1 Auto-Meow Multiplier!';
       break;
     case 'legendary':
       money += 1000;
 	    autoClickerMultiplier+=5;
 	    click+=25;
 	    autoClicker+=10;
-      giftMessage = 'You received 1000 Money, 25 Click, 10 Auto-Clickers and 5 Auto-Clickers Multiplier!';
+      giftMessage = 'You received 1000 Money, 25 Paws, 10 Auto-Meow and 5 Auto-Meow Multiplier!';
       break;
     default:
       giftMessage = 'No gift for this rarity.';
