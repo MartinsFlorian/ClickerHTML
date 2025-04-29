@@ -34,7 +34,6 @@ function updateDisplay(){
   document.getElementById("viewAutoClickerUpgrade").innerText = autoClickerUpgradeLevel;
   document.getElementById("viewAutoClickerMultiplier").innerText = autoClickerMultiplier;
   document.getElementById("viewConverterUpgrade").innerText = converterUpgradeLevel;
-  saveGame();
 }
 function updateTooltips(){
   document.getElementById("autoClickerPriceText").textContent = autoClickerPrice;
@@ -47,7 +46,6 @@ function updateTooltips(){
   document.getElementById("converterValueExchangeText").textContent = converterValueExchange;
   document.getElementById("converterUpgradePriceText").textContent = converterUpgradePrice;
   document.getElementById("converterExchangeAddText").textContent = converterExchangeAdd;
-  saveGame();
 }
 function displayUnlockedNekoImages(){
   const container = document.getElementById('image-container');
@@ -291,7 +289,7 @@ function loadGame(){
     updateTooltips();
   }
 }
-setInterval(saveGame,30000);
+setInterval(saveGame,10000);
 window.addEventListener('load',() =>{
   loadGame();
   loadStart();
