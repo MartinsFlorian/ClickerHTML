@@ -48,7 +48,9 @@ function updateTooltips(){
 }
 function displayUnlockedNekoImages(){
   const container = document.getElementById('image-container');
-  container.innerHTML = '';
+  Array.from(container.children).forEach(child =>{
+    if(child.tagName !== "H2") child.remove();
+  });
 
   for(const {url, rarity} of unlockedNekoImages){
     const nekoWrapper = document.createElement('div');
@@ -143,7 +145,7 @@ function upgradeAutoClicker(){
 function buyNeko(){
   if(nekoCoins >= buyNekoPrice){
     nekoCoins -= buyNekoPrice;
-    buyNekoPrice = Math.floor(buyNekoPrice * 1.1);
+    buyNekoPrice = Math.floor(buyNekoPrice + 5);
 
     updateDisplay();
     updateTooltips();
