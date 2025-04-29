@@ -34,6 +34,7 @@ function updateDisplay(){
   document.getElementById("viewAutoClickerUpgrade").innerText = autoClickerUpgradeLevel;
   document.getElementById("viewAutoClickerMultiplier").innerText = autoClickerMultiplier;
   document.getElementById("viewConverterUpgrade").innerText = converterUpgradeLevel;
+  saveGame();
 }
 function updateTooltips(){
   document.getElementById("autoClickerPriceText").textContent = autoClickerPrice;
@@ -46,6 +47,7 @@ function updateTooltips(){
   document.getElementById("converterValueExchangeText").textContent = converterValueExchange;
   document.getElementById("converterUpgradePriceText").textContent = converterUpgradePrice;
   document.getElementById("converterExchangeAddText").textContent = converterExchangeAdd;
+  saveGame();
 }
 function displayUnlockedNekoImages(){
   const container = document.getElementById('image-container');
@@ -80,7 +82,7 @@ function upgradeClick(){
     money -= clickUpgradePrice;
     click += clickAdd;
     clickUpgradeLevel++;
-    clickUpgradePrice = Math.floor(clickUpgradePrice * 1.3);
+    clickUpgradePrice = Math.floor(clickUpgradePrice + 25);
 
     updateDisplay();
     updateTooltips();
@@ -116,7 +118,7 @@ function buyAutoClicker(){
   if(money >= autoClickerPrice){
     money -= autoClickerPrice;
     autoClicker++;
-    autoClickerPrice = Math.floor(autoClickerPrice * 1.25);
+    autoClickerPrice = Math.floor(autoClickerPrice + 50);
 
     updateDisplay();
     updateTooltips();
@@ -135,7 +137,7 @@ function upgradeAutoClicker(){
     money -= autoClickerUpgradePrice;
     autoClickerMultiplier++;
     autoClickerUpgradeLevel++;
-    autoClickerUpgradePrice = Math.floor(autoClickerUpgradePrice * 1.3);
+    autoClickerUpgradePrice = Math.floor(autoClickerUpgradePrice * 75);
 
     updateDisplay();
     updateTooltips();
