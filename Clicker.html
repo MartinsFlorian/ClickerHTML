@@ -10,6 +10,12 @@
 		<div id="background-pattern"></div>
 		<header>
 			<h1>Neko's Purr-chase</h1>
+			<div id="save-buttons">
+				<button onclick="clearSave()">Clear Save</button>
+				<button onclick="exportSave()">Export Save</button>
+				<button onclick="importSave()">Import Save</button>
+				<input type="file" id="fileInput" style="display: none" onchange="handleFile(event)">
+			</div>
 		</header>
 		<main>
 			<div id="stats">
